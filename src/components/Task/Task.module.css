@@ -1,0 +1,52 @@
+
+.containerTask {
+    width: 100%;
+    background: var(--gray-350);
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 8px;
+    border: solid 1px var(--gray-300);
+    box-shadow:  1px 1px 5px 1px var(--gray-shadow);
+}
+
+.containerChekbox {
+    line-height: 1.8;
+}
+
+.containerTask input[type="checkbox"] {
+    appearance: none; /* Essas propriedades são usadas para controlar a aparência nativa do elemento <input> */
+    -webkit-appearance: none; /* Essas propriedades são usadas para controlar a aparência nativa do elemento <input> */
+    -moz-appearance: none; /* Essas propriedades são usadas para controlar a aparência nativa do elemento <input> */
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: transparent;
+    border: solid 3px var(--blue-dark);
+    display: inline-block;
+    cursor: pointer; 
+    vertical-align: middle; /*Define o alinhamento vertical do elemento*/
+    margin-right: 0.8rem;
+  }
+
+  input[type="checkbox"]:checked::before{
+    content: "\2713"; /* Código Unicode para um símbolo de marca de seleção */
+    display: inline-block;
+    background-color: var(--blue-dark); 
+    margin-right: 5px; /* Espaçamento entre o ícone e o rótulo */
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .task {
+    line-height: 1.8;
+    text-align: justify;
+  }
