@@ -5,14 +5,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.75rem;
+    gap: 2rem;
     background: var(--gray-700);
 }
 
 .title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--blue-dark);
+    color: var(--blue-700);
+    gap: 1rem;
+    justify-content: center;
+    display: flex;
+    align-content: center;
 }
 
 form {
@@ -33,7 +37,7 @@ form {
 }
 
 .buttonAddTask {
-    background: var(--blue-dark);
+    background: var(--blue-700);
     color: var(--gray-100);
     font-weight: 700;
     font-size: 0.0.875rem;
@@ -51,7 +55,7 @@ form {
 }
 
 .buttonAddTask:hover {
-    background: var(--blue-hover);
+    background: var(--blue-dark);
     scale: 1.02;
     color: white;
     box-shadow:  1px 1px 6px 1px var(--gray-400);
@@ -92,5 +96,9 @@ form {
 
     .textButton{
         display: none;
+    }
+
+    .title img {
+        width: 4rem;
     }
 }

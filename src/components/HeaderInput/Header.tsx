@@ -4,7 +4,10 @@ export function Header (){
     return(
         <>
             <header className={styles.containerHeader}>
-                <h1 className={styles.title}>Central de Tarefas</h1>
+                <h1 className={styles.title}>
+                    <img src="src/assets/Logo-main.svg" />
+                    Tarefas  
+                </h1>
                 <form id="form">
                     <input
                         className={styles.inputTask} 
