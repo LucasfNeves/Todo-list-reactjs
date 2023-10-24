@@ -1,3 +1,4 @@
+import { Task } from '../Task/Task'
 import styles from './ContainerTask.module.css'
 
 export function ContainerTask() {
@@ -21,13 +22,15 @@ export function ContainerTask() {
                     </span>
                 </span>
             </header>
-            <section className={styles.containerTask}>
+            <section className={styles.sectionTask}>
                 <div>
                     <img src="src/assets/Clipboard.svg" alt="Clipboard" />
                 </div>
-                <div className={styles.containerTaskLegend}>
+                <div className={styles.sectionTaskLegend}>
                     <p>Você ainda não tem tarefas cadastradas</p>
                     <p>Crie tarefas e organize seus itens a fazer</p>
+                </div>
+                <div className={styles.containerTask}>
                 </div>
             </section>
         </div>
