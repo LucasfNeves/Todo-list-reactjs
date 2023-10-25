@@ -2,31 +2,52 @@ import { useState } from 'react';
 import styles from './Task.module.css';
 import { Trash } from 'phosphor-react';
 
-export function Task() {
+interface TaskPorps {
+  content: string;
+  onDeleteTask: (content: string) => void
+  updateCountCompletedTask: (isChecked: boolean) => void
+} 
 
-    const [isChecked, setIsChecked] = useState(false);
-    
-    const handleCheckboxClick = () => {
-      setIsChecked(!isChecked);
-    };
+export function Task({content, onDeleteTask, updateCountCompletedTask  }: TaskPorps) {
 
-    const styleCheckedComment = () => {
-        return isChecked ? styles.checkedTask : styles.task;
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleDeleteTask() {
+    console.log("deletar")
+
+    onDeleteTask(content)
+
+    if (isChecked === true) {
+      updateCountCompletedTask(isChecked)
     }
+  }
+    
+  const handleCheckboxClick = () => {
+    setIsChecked(!isChecked);
+    updateCountCompletedTask(isChecked)
+  };
+
+  // Adiciona o estilo caso a tarefa seja marcada
+  const styleCheckedComment = () => {
+      return isChecked ? styles.checkedTask : styles.task;
+  }
     
   return (
     <div className={styles.containerTask}>
         <span className={styles.containerChekbox}>
             <input 
-            type="checkbox" 
-            checked={isChecked}
-            onChange={handleCheckboxClick}
+              type="checkbox" 
+              checked={isChecked}
+              onChange={handleCheckboxClick}
             />
         </span>
         <span className={styleCheckedComment()}> 
-            Tarefa do usuário Tarefa do usuário Tarefa do usuário Tarefa do usuárioTarefa do usuário Tarefa do usuário Tarefa do usuário Tarefa do usuário Tarefa do usuário Tarefa do usuário Tarefa do usuário
+            {content}
         </span>
-        <button className={styles.trasher}>
+        <button 
+          onClick={handleDeleteTask}
+          className={styles.trasher}
+        >
             <Trash size={24}  />
         </button>
     </div>
