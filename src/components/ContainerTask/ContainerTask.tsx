@@ -23,14 +23,20 @@ export function ContainerTask() {
                 </span>
             </header>
             <section className={styles.sectionTask}>
-                <div>
+                {/* <div>
                     <img src="src/assets/Clipboard.svg" alt="Clipboard" />
                 </div>
                 <div className={styles.sectionTaskLegend}>
                     <p>Você ainda não tem tarefas cadastradas</p>
                     <p>Crie tarefas e organize seus itens a fazer</p>
-                </div>
+                </div> */}
                 <div className={styles.containerTask}>
+                    <Task/>
+                    <Task/>
+                    <Task/>
+                    <Task/>
+                    <Task/>
+                    
                 </div>
             </section>
         </div>

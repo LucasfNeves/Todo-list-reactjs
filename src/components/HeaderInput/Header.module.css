@@ -1,11 +1,13 @@
 .containerHeader {
     width: 100vw;
     height: 12rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
+
     background: var(--gray-700);
 }
 
@@ -13,14 +15,16 @@
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--blue-700);
+
+    display: flex;
     gap: 1rem;
     justify-content: center;
-    display: flex;
     align-content: center;
 }
 
 form {
     width: 48.625rem;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,7 +65,7 @@ form {
     box-shadow:  1px 1px 6px 1px var(--gray-400);
 }
 
-@media (max-width:812px) {
+@media (max-width:768px) {
     :root {
         font-size: 0.875rem;
     }

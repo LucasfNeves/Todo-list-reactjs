@@ -3,6 +3,9 @@
     width: 100%;
     background: var(--gray-350);
     display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+
     padding: 1rem;
     gap: 1rem;
     border-radius: 8px;
@@ -47,6 +50,28 @@
   }
 
   .task {
+    flex: 1;
     line-height: 1.8;
     text-align: justify;
   }
+
+  .checkedTask {
+    color: var(--gray-300);
+    line-height: 1.8;
+    text-align: justify;
+    text-decoration: line-through;
+  }
+
+
+  .trasher {
+    background: none;
+    transition: color 0.1s, scale 0.1s;
+  }
+
+  .trasher:hover {
+    scale: 1.05;
+    cursor: pointer;
+    color: var(--danger);
+    
+  }
+
