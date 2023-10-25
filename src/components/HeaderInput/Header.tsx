@@ -1,6 +1,15 @@
+import { ChangeEventHandler, FormEventHandler } from 'react';
 import styles from './Header.module.css'
 
-export function Header (){
+interface HeaderProps {
+    change: ChangeEventHandler<HTMLInputElement>;
+    value: string;
+    submit: FormEventHandler<HTMLFormElement>;
+    onInvalid: FormEventHandler<HTMLInputElement>;
+  }
+
+export function Header ({change, value, submit, onInvalid }:HeaderProps ){
+    
     return(
         <>
             <header className={styles.containerHeader}>
@@ -8,12 +17,17 @@ export function Header (){
                     <img src="src/assets/Logo-main.svg" />
                     Tarefas  
                 </h1>
-                <form id="form">
+                <form onSubmit={submit}  >
                     <input
+                        onInvalid= {onInvalid}
+                        onChange={change}
+                        value={value}
                         className={styles.inputTask} 
                         type="text" 
                         autoComplete="off"
-                        placeholder="Adicione uma nova tarefa" id="inputTask"
+                        placeholder="Adicione uma nova tarefa" 
+                        id="inputTask"
+                        required
                     />
                     <button
                         title="Adicionar Tarefa"

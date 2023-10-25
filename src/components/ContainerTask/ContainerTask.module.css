@@ -2,6 +2,15 @@ html {
     overflow-x: hidden;
 }
 
+.sectionToDoList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 .container {
     position: relative;
     display: flex;
@@ -17,6 +26,7 @@ html {
     border-radius: 5px;
     box-shadow:  2px 2px 15px 4px var(--gray-shadow);
     margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
 .header {
@@ -28,6 +38,14 @@ html {
 
     width: 100%;
     padding: 1.5rem;
+}
+
+.tasksMetrics {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
 
 .tasksMetricsLegend {
@@ -48,36 +66,6 @@ html {
     color: var(--gray-200);
 }
 
-.tasksMetrics {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-}
-
-.sectionTask {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-
-}
-
-.sectionTaskLegend {
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.sectionTaskLegend p:nth-child(1) {
-    color: var(--gray-300);
-    font-weight: 700;
-}
-
-.sectionTaskLegend p:nth-child(2) {
-    color: var(--gray-300);
-}
-
 .containerTask {
     margin-top: 4rem;
     width: 100%;
@@ -88,6 +76,43 @@ html {
     align-items: flex-start;
     justify-content: center;
     padding: 1rem;
+    z-index: 1;
+}
+
+.sectionTask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+
+}
+
+.containerInitialMensagem {
+    position: absolute;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.InitialMensagemLegend {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.InitialMensagemLegend p:nth-child(1) {
+    color: var(--gray-300);
+    font-weight: 700;
+}
+
+.InitialMensagemLegend p:nth-child(2) {
+    color: var(--gray-300);
 }
 
 
@@ -110,7 +135,7 @@ html {
     
     .header {
         width: 100%;
-        padding: 1rem; 
+        padding: 1.5rem;
     }
     
     .tasksMetricsLegend {
@@ -125,7 +150,6 @@ html {
     
     .tasksMetrics {
         gap: 0.5rem;
-        width: 100%;
     }
     
     .sectionTask {

@@ -52,14 +52,20 @@
   .task {
     flex: 1;
     line-height: 1.8;
-    text-align: justify;
+    text-align: left;
+    width: 60%;
+    word-wrap: break-word; /* Qubra a linha do Texto digitado automaticamente*/
+    
   }
 
   .checkedTask {
     color: var(--gray-300);
+    flex: 1;
     line-height: 1.8;
-    text-align: justify;
+    text-align: left;
+    width: 60%;
     text-decoration: line-through;
+    word-wrap: break-word; /* Qubra a linha do Texto digitado automaticamente*/
   }
 
 
