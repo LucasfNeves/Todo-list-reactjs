@@ -6,7 +6,7 @@ interface HeaderProps {
     value: string;
     submit: FormEventHandler<HTMLFormElement>;
     onInvalid: FormEventHandler<HTMLInputElement>;
-  }
+}
 
 export function Header ({change, value, submit, onInvalid }:HeaderProps ){
     
