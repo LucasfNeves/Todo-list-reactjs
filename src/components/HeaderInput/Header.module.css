@@ -9,6 +9,7 @@
     gap: 2rem;
 
     background: var(--gray-700);
+    
 }
 
 .title {
@@ -66,6 +67,7 @@ form {
 }
 
 @media (max-width:768px) {
+    
     :root {
         font-size: 0.875rem;
     }

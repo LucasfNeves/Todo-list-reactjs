@@ -6,28 +6,30 @@ interface TaskPorps {
   content: string;
   onDeleteTask: (content: string) => void;
   updateCountCompletedTask: (isChecked: boolean) => void;
-  key: number;
 } 
 
-export function Task({content, onDeleteTask, updateCountCompletedTask, key}: TaskPorps) {
+export function Task({content, onDeleteTask, updateCountCompletedTask}: TaskPorps) {
 
   const [isChecked, setIsChecked] = useState(false);
 
+  const handleCheckboxClick = () => {
+    setIsChecked(!isChecked);
+
+    // altera a contador de tarefas concluídas quando o checkbox for marcado
+    updateCountCompletedTask(isChecked)
+  };
 
   function handleDeleteTask() {
-    console.log("deletar")
 
+    console.log("deletar")
     onDeleteTask(content)
 
+    // confere se o checkbox está marcado, se estiver ativa função exportada altera o número do contador "concluido" quando a task for deletada
     if (isChecked === true) {
       updateCountCompletedTask(isChecked)
     }
+
   }
-    
-  const handleCheckboxClick = () => {
-    setIsChecked(!isChecked);
-    updateCountCompletedTask(isChecked)
-  };
 
   // Adiciona o estilo caso a tarefa seja marcada
   const styleCheckedComment = () => {
@@ -35,7 +37,7 @@ export function Task({content, onDeleteTask, updateCountCompletedTask, key}: Tas
   }
     
   return (
-    <div key={key} className={styles.containerTask}>
+    <div className={styles.containerTask}>
         <span className={styles.containerChekbox}>
             <input 
               type="checkbox" 
