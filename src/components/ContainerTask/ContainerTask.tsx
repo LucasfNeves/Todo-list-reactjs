@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState, useRef  } from 'react'
 import { Task } from '../Task/Task'
 import styles from './ContainerTask.module.css'
 import { Header } from '../HeaderInput/Header'
@@ -6,17 +6,21 @@ import { Header } from '../HeaderInput/Header'
 
 export function ContainerTask() {
 
-    const [tasks, setTasks] = useState<string[]>([])
+    const [tasks, setTasks] = useState<{ id: number, content: string }[]>([])
     const [newTasks, setNewTasks] = useState('')
     const [countCompletedTask, setCountCompletedTask] = useState(0)
+    const uniqueIdRef = useRef(0);
 
     // Adiciona um novo comentário e matém os comentários existentes
     function handleCreatNewTask (event: FormEvent) {
         event.preventDefault();
 
-        setTasks([...tasks, newTasks])
+        const newTask = { id: uniqueIdRef.current, content: newTasks };
+        uniqueIdRef.current++;
+        setTasks([...tasks, newTask])
         setNewTasks('')
     }
+    
 
     // Monitora as mudanças no Input
     function handleNewCommentChange(event: ChangeEvent<HTMLInputElement>) {
@@ -26,10 +30,10 @@ export function ContainerTask() {
     }
 
     // Deletar tarefa 
-    function deleteTask (taskToDeleted: string) {
+    function deleteTask (taskToDeleted: { id: number, content: string }) {
         const tasksWithoutTaskToDelete = tasks.filter(task => {
-            return task !== taskToDeleted
-        })
+            return task.id !== taskToDeleted.id
+    })
 
         // Faz alterações nas tarefas criadas
         setTasks(tasksWithoutTaskToDelete); 
@@ -43,7 +47,7 @@ export function ContainerTask() {
     const initialMessageAppears = tasks.length === 0;
 
     const countTasks = tasks.length
-
+    
     // Modifica o contador de tarefas concluídas
     function updateCountCompletedTask(isChecked: boolean){
         !isChecked ? setCountCompletedTask(countCompletedTask + 1) : setCountCompletedTask(countCompletedTask - 1)
@@ -89,12 +93,12 @@ export function ContainerTask() {
                 )}
                 <section className={styles.sectionTask}>
                     <div className={styles.containerTask}>
-                        {tasks.map(task => {
+                        {tasks.map((task) => {
                             return (
                                 <Task
-                                    key={task}
-                                    content={task}
-                                    onDeleteTask = {deleteTask}
+                                    key={task.id}
+                                    content={task.content}
+                                    onDeleteTask={() => deleteTask(task)}
                                     updateCountCompletedTask = {updateCountCompletedTask}
                                 />
                             )

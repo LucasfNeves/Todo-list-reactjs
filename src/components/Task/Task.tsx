@@ -4,13 +4,15 @@ import { Trash } from 'phosphor-react';
 
 interface TaskPorps {
   content: string;
-  onDeleteTask: (content: string) => void
-  updateCountCompletedTask: (isChecked: boolean) => void
+  onDeleteTask: (content: string) => void;
+  updateCountCompletedTask: (isChecked: boolean) => void;
+  key: number;
 } 
 
-export function Task({content, onDeleteTask, updateCountCompletedTask  }: TaskPorps) {
+export function Task({content, onDeleteTask, updateCountCompletedTask, key}: TaskPorps) {
 
   const [isChecked, setIsChecked] = useState(false);
+
 
   function handleDeleteTask() {
     console.log("deletar")
@@ -33,7 +35,7 @@ export function Task({content, onDeleteTask, updateCountCompletedTask  }: TaskPo
   }
     
   return (
-    <div className={styles.containerTask}>
+    <div key={key} className={styles.containerTask}>
         <span className={styles.containerChekbox}>
             <input 
               type="checkbox" 
@@ -41,7 +43,7 @@ export function Task({content, onDeleteTask, updateCountCompletedTask  }: TaskPo
               onChange={handleCheckboxClick}
             />
         </span>
-        <span className={styleCheckedComment()}> 
+        <span  className={styleCheckedComment()}> 
             {content}
         </span>
         <button 
