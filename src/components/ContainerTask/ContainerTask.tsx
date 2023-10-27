@@ -1,81 +1,89 @@
-import { ChangeEvent, FormEvent, InvalidEvent, useState, useRef, useEffect  } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState, useEffect  } from 'react'
 import { Task } from '../Task/Task'
 import styles from './ContainerTask.module.css'
 import { Header } from '../HeaderInput/Header'
-
+import { TodosStorage } from '../../storage/Storage'
+import { v4 as randomUUID } from 'uuid'; 
+import { Todo } from '../../types'
 
 export function ContainerTask() {
 
-    const [tasks, setTasks] = useState<{ id: number, content: string }[]>([])
+    const [tasks, setTasks] = useState<Todo[]>([]);
     const [newTasks, setNewTasks] = useState('')
-    const [countCompletedTask, setCountCompletedTask] = useState(0)
-    const uniqueIdRef = useRef(0);
-
-    // Aparecer a mensagem inicial se stiver sem nenhum comentário
+    
     const initialMessageAppears = tasks.length === 0;
-    const countTasks = tasks.length
 
+    const countTasks = tasks.length
+    const countTaskCompleted = tasks.filter((task) => task.completed).length;
 
     // Adiciona um novo comentário e matém os comentários existentes
     function handleCreatNewTask (event: FormEvent) {
         event.preventDefault();
 
-        const newTask = { id: uniqueIdRef.current, content: newTasks };
-        uniqueIdRef.current++;
+        const newTask = { id: randomUUID(), content: newTasks, completed: false };
         
-        setTasks([...tasks, newTask])
-        setNewTasks('')
+        const updatedTasks = [...tasks, newTask];
+        handleSaveTasks(updatedTasks)
+        setTasks(updatedTasks)
+        setNewTasks('') 
     }
 
-    /* function saveTasks(taskToSave: { id: number, content: string }[]) {
-         const saveTask = taskToSave.map(task => task.content.trim());
-        const tasksJSON = JSON.stringify(saveTask);
-         localStorage.setItem('tasks', tasksJSON);
+    // Controla o estado de completed da Task
+    function handleToggleCompleted(taskToToggle: Todo) {
+        const updatedTasks = tasks.map((task) => {
+          if (task.id === taskToToggle.id) {
+            return { ...task, completed: !task.completed };
+          }
+          return task;
+        });
+
+        handleSaveTasks(updatedTasks)
+        setTasks(updatedTasks);
     }
 
-     function getSaveTasks(){
-         const taskStorage = localStorage.getItem('tasks');
-         let listTask = []
-        
-        if (taskStorage !== null) {
-            listTask = JSON.parse(taskStorage);
-             return listTask;
-        } 
-     }
-
-     useEffect(() => {
-         const savedTasks = getSaveTasks();
-      
-        if (savedTasks) {
-          setTasks(updatedTasks);
-        }
-       }, []);
-    */
-  
     // Monitora as mudanças no Input
     function handleNewCommentChange(event: ChangeEvent<HTMLInputElement>) {
         event.target.setCustomValidity("");
         setNewTasks(event.target.value)
-        
     }
 
     // Deletar tarefa 
-    function deleteTask (taskToDeleted: { id: number, content: string }) {
+    function deleteTask (taskToDeleted: Todo) {
         const tasksWithoutTaskToDelete = tasks.filter(task => {
             return task.id !== taskToDeleted.id
     })
         // Faz alterações nas tarefas criadas
-        setTasks(tasksWithoutTaskToDelete); 
+        setTasks(tasksWithoutTaskToDelete);
+        removeTaskFromStorage(taskToDeleted);
     }
+
+    function removeTaskFromStorage(taskToRemove: Todo) {
+
+        const savedTasks = TodosStorage.get();
+        const updatedTasks = savedTasks.filter((task) => task.id !== taskToRemove.id);
+        TodosStorage.save(updatedTasks);
+      }
 
     function handleNewInvalidTask(event: InvalidEvent<HTMLInputElement>){
         event.target.setCustomValidity("Esse campo é obrigatório");
     }
-    
-    // Modifica o contador de tarefas concluídas, a função é exportada para o componente Task
-    function updateCountCompletedTask(isChecked: boolean){
-        isChecked ? setCountCompletedTask(countCompletedTask - 1) : setCountCompletedTask(countCompletedTask + 1)
+
+    function handleSaveTasks(updatedTasks: Todo[]) {
+        TodosStorage.save(updatedTasks);
     }
+    
+
+    useEffect(() => {
+        const savedTasks = JSON.parse(localStorage.getItem('TODOS') || '[]');
+
+        if (savedTasks && savedTasks.length > 0) {
+        setTasks(savedTasks);
+        } else {
+            setTasks([])
+        }
+
+    }, []);
+
 
     return(
         <section className= {styles.sectionToDoList}>
@@ -103,7 +111,7 @@ export function ContainerTask() {
                             Concluídas
                         </span>
                         <span className={styles.tasksMetricsNumber}>
-                            {countCompletedTask}
+                            {countTaskCompleted}
                         </span>
                     </span>
                 </header>
@@ -125,10 +133,11 @@ export function ContainerTask() {
                         {tasks.map((task) => {
                             return (
                                 <Task
+                                    task={task}
                                     key={task.id}
                                     content={task.content}
                                     onDeleteTask={() => deleteTask(task)}
-                                    updateCountCompletedTask = {updateCountCompletedTask}
+                                    onToggleCompleted={() => handleToggleCompleted(task)}
                                 />
                             )
                         })}

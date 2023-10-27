@@ -1,34 +1,31 @@
 import { useState } from 'react';
 import styles from './Task.module.css';
 import { Trash } from 'phosphor-react';
+import { Todo } from '../../types';
 
 interface TaskPorps {
+  task: Todo
   content: string;
   onDeleteTask: (content: string) => void;
-  updateCountCompletedTask: (isChecked: boolean) => void;
+  onToggleCompleted: (id: string, completed: boolean) => void;
 } 
 
-export function Task({content, onDeleteTask, updateCountCompletedTask}: TaskPorps) {
+export function Task({task ,content, onDeleteTask,onToggleCompleted }: TaskPorps) {
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(task.completed);
 
   const handleCheckboxClick = () => {
     setIsChecked(!isChecked);
-
-    // altera a contador de tarefas concluídas quando o checkbox for marcado
-    updateCountCompletedTask(isChecked)
+    onToggleCompleted(task.id, !isChecked)
   };
 
   function handleDeleteTask() {
 
     console.log("deletar")
-    onDeleteTask(content)
 
-    // confere se o checkbox está marcado, se estiver ativa função exportada altera o número do contador "concluido" quando a task for deletada
-    if (isChecked === true) {
-      updateCountCompletedTask(isChecked)
-    }
+    if(isChecked) onToggleCompleted(task.id, !isChecked)
 
+    onDeleteTask(task.id)
   }
 
   // Adiciona o estilo caso a tarefa seja marcada
