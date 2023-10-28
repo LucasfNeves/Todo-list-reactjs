@@ -5,6 +5,7 @@ import { Header } from '../HeaderInput/Header'
 import { TodosStorage } from '../../storage/Storage'
 import { v4 as randomUUID } from 'uuid'; 
 import { Todo } from '../../types'
+import Clipboard from '../../assets/Clipboard.svg'
 
 export function ContainerTask() {
 
@@ -119,7 +120,7 @@ export function ContainerTask() {
                 { initialMessageAppears && (
                     <div className={styles.containerInitialMensagem}>
                         <div>
-                            <img src="src/assets/Clipboard.svg" alt="Clipboard" />
+                            <img src={Clipboard} alt="Clipboard" />
                         </div>
                         <div className={styles.InitialMensagemLegend}>
                             <p>Você ainda não tem tarefas cadastradas</p>
