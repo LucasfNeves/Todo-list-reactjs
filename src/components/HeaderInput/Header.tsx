@@ -1,5 +1,7 @@
 import { ChangeEventHandler, FormEventHandler } from 'react';
 import styles from './Header.module.css'
+import LogoMain from '../../assets/LogoMain.svg';
+import IconAdd from '../../assets/IconAdd.svg'
 
 interface HeaderProps {
     change: ChangeEventHandler<HTMLInputElement>;
@@ -14,7 +16,7 @@ export function Header ({change, value, submit, onInvalid }:HeaderProps ){
         <>
             <header className={styles.containerHeader}>
                 <h1 className={styles.title}>
-                    <img src="src/assets/Logo-main.svg" />
+                    <img src={LogoMain} />
                     Tarefas  
                 </h1>
                 <form onSubmit={submit}  >
@@ -34,7 +36,7 @@ export function Header ({change, value, submit, onInvalid }:HeaderProps ){
                         className={styles.buttonAddTask}
                     > 
                         <span className={styles.textButton}>Adicionar</span>
-                        <img src="src/assets/icon-add.svg" alt="Icon-add" />
+                        <img src={IconAdd} alt="" />
                     </button>
                 </form> 
             </header>
