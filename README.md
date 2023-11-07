@@ -1,5 +1,8 @@
 # Projeto Todo List 
 
+![Cover](https://github.com/LucasfNeves/Todo-list-reactjs/assets/136910031/120440d7-2924-4bc2-80ac-6ca2b87d3186)
+
+
 ## Visão Geral
 Bem-vindo ao projeto Todo List, desenvolvido de forma independente. Este projeto é uma aplicação de lista de tarefas que permite aos usuários adicionar, marcar como concluídas e excluir tarefas. Ele é construído com as tecnologias JavaScript, TypeScript, CSS, HTML e React.js, e utiliza o LocalStorage para armazenar as tarefas localmente.
 
@@ -7,11 +10,6 @@ Bem-vindo ao projeto Todo List, desenvolvido de forma independente. Este projeto
 Você pode acessar o projeto por meio do link a seguir:
 
 🚀 [Clique aqui e acesse o Projeto](https://todo-list-reactjs-tau.vercel.app/)
-
-## Preview
-
-![Cover](https://github.com/LucasfNeves/Todo-list-reactjs/assets/136910031/120440d7-2924-4bc2-80ac-6ca2b87d3186)
-
 
 ## Tecnologias Utilizadas
 O projeto utiliza uma variedade de tecnologias para proporcionar uma experiência de aprendizado abrangente, incluindo:
