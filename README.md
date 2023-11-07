@@ -43,6 +43,7 @@ Para executar o projeto em sua máquina local, siga estas etapas:
 
 ```bash
 git@github.com:LucasfNeves/Todo-list-reactjs.git
+```
    
 2. Navegue até o diretório do projeto:
   ```bash
