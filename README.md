@@ -10,6 +10,9 @@ Você pode acessar o projeto por meio do link a seguir:
 
 ## Preview
 
+![Cover](https://github.com/LucasfNeves/Todo-list-reactjs/assets/136910031/120440d7-2924-4bc2-80ac-6ca2b87d3186)
+
+
 ## Tecnologias Utilizadas
 O projeto utiliza uma variedade de tecnologias para proporcionar uma experiência de aprendizado abrangente, incluindo:
 
