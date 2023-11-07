@@ -48,7 +48,7 @@ git@github.com:LucasfNeves/Todo-list-reactjs.git
    
 2. Navegue até o diretório do projeto:
   ```bash
-  cd seu-repositorio
+  cd Todo-list-reactjs
   ```
 
 3. Instale as dependências:
