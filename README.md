@@ -1,4 +1,4 @@
-# Projeto Todo List - Curso Ignite RocketSeat
+# Projeto Todo List 
 
 ## Visão Geral
 Bem-vindo ao projeto Todo List, desenvolvido por mim de forma independente. Este projeto é uma aplicação de lista de tarefas que permite aos usuários adicionar, marcar como concluídas e excluir tarefas. Ele é construído com as tecnologias JavaScript, TypeScript, CSS, HTML e React.js, e utiliza o LocalStorage para armazenar as tarefas localmente.
