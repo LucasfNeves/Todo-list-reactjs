@@ -41,8 +41,8 @@ Para executar o projeto em sua máquina local, siga estas etapas:
 
 1. Clone o repositório:
 
-   ```bash
-   git@github.com:LucasfNeves/Todo-list-reactjs.git
+```bash
+git@github.com:LucasfNeves/Todo-list-reactjs.git
    
 2. Navegue até o diretório do projeto:
   ```bash
