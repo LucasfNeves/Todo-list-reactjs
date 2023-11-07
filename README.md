@@ -1,7 +1,7 @@
 # Projeto Todo List 
 
 ## Visão Geral
-Bem-vindo ao projeto Todo List, desenvolvido por mim de forma independente. Este projeto é uma aplicação de lista de tarefas que permite aos usuários adicionar, marcar como concluídas e excluir tarefas. Ele é construído com as tecnologias JavaScript, TypeScript, CSS, HTML e React.js, e utiliza o LocalStorage para armazenar as tarefas localmente.
+Bem-vindo ao projeto Todo List, desenvolvido de forma independente. Este projeto é uma aplicação de lista de tarefas que permite aos usuários adicionar, marcar como concluídas e excluir tarefas. Ele é construído com as tecnologias JavaScript, TypeScript, CSS, HTML e React.js, e utiliza o LocalStorage para armazenar as tarefas localmente.
 
 ## Acesse o Projeto:
 Você pode acessar o projeto por meio do link a seguir:
@@ -15,8 +15,8 @@ O projeto utiliza uma variedade de tecnologias para proporcionar uma experiênci
 
 - JavaScript: A linguagem de programação principal usada no projeto.
 - TypeScript: O TypeScript é integrado ao projeto para adicionar tipagem estática, tornando-o mais robusto e fácil de manter.
-- CSS: Para estilização e design da interface.
-- HTML: Utilizado para criar a estrutura da página.
+- CSS: Para estilização e design da interface, e responsividade.
+- HTML: Utilizado tags corretas para criar acessibilidade.
 - React.js: A biblioteca React é a base da aplicação, permitindo a construção de interfaces de usuário eficazes.
 - LocalStorage: Utilizado para armazenar as tarefas localmente, permitindo que os usuários mantenham suas tarefas mesmo após o fechamento da aplicação.
 
