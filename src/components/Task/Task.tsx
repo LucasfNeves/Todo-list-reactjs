@@ -1,20 +1,22 @@
 import { useState } from 'react'
 import styles from './Task.module.css'
-import { Trash } from 'phosphor-react'
-import { Todo } from '../../@types/types'
+import { PencilSimpleLine, Trash } from 'phosphor-react'
+import { Todo } from '../../pages/Admin'
+import { db } from '../../firebaseConection'
+import { doc, deleteDoc } from 'firebase/firestore'
 
 interface TaskPorps {
   task: Todo
   content: string
-  onDeleteTask: (content: string) => void
   onToggleCompleted: (id: string, completed: boolean) => void
+  editTaks: (task: Todo) => void
 }
 
 export function Task({
   task,
   content,
-  onDeleteTask,
   onToggleCompleted,
+  editTaks,
 }: TaskPorps) {
   const [isChecked, setIsChecked] = useState(task.completed)
 
@@ -23,12 +25,16 @@ export function Task({
     onToggleCompleted(task.id, !isChecked)
   }
 
-  function handleDeleteTask() {
-    console.log('deletar')
+  async function handleDeleteTask(id: string) {
+    const docRef = doc(db, 'tasks', id)
 
-    if (isChecked) onToggleCompleted(task.id, !isChecked)
-
-    onDeleteTask(task.id)
+    try {
+      await deleteDoc(docRef)
+      console.log('Documento deletado com sucesso!')
+      if (isChecked) onToggleCompleted(task.id, !isChecked)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   // Adiciona o estilo caso a tarefa seja marcada
@@ -37,7 +43,7 @@ export function Task({
   }
 
   return (
-    <div className={styles.containerTask}>
+    <article key={task.id} className={styles.containerTask}>
       <span className={styles.containerChekbox}>
         <input
           type="checkbox"
@@ -46,9 +52,39 @@ export function Task({
         />
       </span>
       <span className={styleCheckedComment()}>{content}</span>
-      <button onClick={handleDeleteTask} className={styles.trasher}>
-        <Trash size={24} />
-      </button>
-    </div>
+      <div className={styles.containerButton}>
+        <button
+          title="editar"
+          type="button"
+          className={styles.edit}
+          onClick={() => editTaks(task)}
+        >
+          <PencilSimpleLine size={20} weight="bold" />
+        </button>
+        <button
+          type="button"
+          title="excluir"
+          className={styles.trasher}
+          onClick={() => handleDeleteTask(task.id)}
+        >
+          <Trash size={20} weight="bold" />
+        </button>
+      </div>
+    </article>
   )
 }
+
+/**
+ * Português: Funções quando a persistência de dados era feita com o LocalStorage, posteriormente foi substituída pelo Firebase
+ * English: Functions when data persistence was done with LocalStorage, later it was replaced by Firebase
+ *
+ * 
+
+  function handleDeleteTask() {
+    console.log('deletar')
+
+    if (isChecked) onToggleCompleted(task.id, !isChecked)
+
+    onDeleteTask(task.id)
+  }
+ */

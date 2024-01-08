@@ -1,0 +1,57 @@
+.header {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.tasksMetrics {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.tasksMetricsLegend {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+.tasksMetricsNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--gray-500);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--gray-200);
+}
+
+@media (max-width: 720px) {
+    .header {
+        width: 100%;
+        padding: 1.5rem;
+    }
+    
+    .tasksMetricsLegend {
+        font-size: 1rem;
+    }
+    
+    .tasksMetricsNumber {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .tasksMetrics {
+        gap: 0.5rem;
+    }
+}

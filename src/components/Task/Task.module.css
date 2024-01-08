@@ -70,14 +70,41 @@
 
 
   .trasher {
+    color: var(--gray-300);
     background: none;
-    transition: color 0.1s, scale 0.1s;
+    transition: color 0.1s;
   }
 
   .trasher:hover {
-    scale: 1.05;
     cursor: pointer;
     color: var(--danger);
     
   }
+
+  .edit {
+    background: none;
+    color: var(--gray-300);
+    transition: color 0.1s;
+  }
+
+  .edit:hover {
+    cursor: pointer;
+    color: var(--blue-dark);
+    
+  }
+
+  .containerButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .containerButton {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+
 

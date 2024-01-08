@@ -1,23 +1,49 @@
 import { ChangeEventHandler, FormEventHandler } from 'react'
 import styles from './Header.module.css'
 import LogoMain from '../../assets/LogoMain.svg'
-import IconAdd from '../../assets/IconAdd.svg'
+import { auth } from './../../firebaseConection'
+import { signOut } from 'firebase/auth'
+import { CheckCircle, PlusCircle, SignOut } from 'phosphor-react'
+import { Todo } from '../../pages/Admin'
 
 interface HeaderProps {
   change: ChangeEventHandler<HTMLInputElement>
   value: string
   submit: FormEventHandler<HTMLFormElement>
   onInvalid: FormEventHandler<HTMLInputElement>
+  edit: object | Todo
 }
 
-export function Header({ change, value, submit, onInvalid }: HeaderProps) {
+export function Header({
+  change,
+  value,
+  submit,
+  onInvalid,
+  edit,
+}: HeaderProps) {
+  async function handleLogout() {
+    await signOut(auth)
+  }
+
   return (
-    <>
-      <header className={styles.containerHeader}>
-        <h1 className={styles.title}>
-          <img src={LogoMain} alt="" />
-          Tarefas
-        </h1>
+    <header className={styles.containerHeader}>
+      <div className={styles.headerContent}>
+        <div className={styles.logoutContent}>
+          <div></div>
+          <h1 className={styles.title}>
+            <img src={LogoMain} alt="" />
+            Tarefas
+          </h1>
+          <button
+            title="sair"
+            onClick={handleLogout}
+            className={styles.buttonLogout}
+          >
+            Sair
+            <SignOut size={20} weight="fill" />
+          </button>
+        </div>
+
         <form onSubmit={submit}>
           <input
             onInvalid={onInvalid}
@@ -25,17 +51,23 @@ export function Header({ change, value, submit, onInvalid }: HeaderProps) {
             value={value}
             className={styles.inputTask}
             type="text"
-            autoComplete="off"
             placeholder="Adicione uma nova tarefa"
             id="inputTask"
-            required
+            autoComplete="off"
           />
-          <button title="Adicionar Tarefa" className={styles.buttonAddTask}>
-            <span className={styles.textButton}>Adicionar</span>
-            <img src={IconAdd} alt="" />
-          </button>
+          {Object.keys(edit).length > 0 ? (
+            <button title="Editar Tarefa" className={styles.buttonAddTask}>
+              <span className={styles.textButton}>Editar</span>
+              <CheckCircle size={20} weight="bold" />
+            </button>
+          ) : (
+            <button title="Adicionar Tarefa" className={styles.buttonAddTask}>
+              <span className={styles.textButton}>Adicionar</span>
+              <PlusCircle size={20} weight="bold" />
+            </button>
+          )}
         </form>
-      </header>
-    </>
+      </div>
+    </header>
   )
 }

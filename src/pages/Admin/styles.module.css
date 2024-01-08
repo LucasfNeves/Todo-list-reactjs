@@ -2,13 +2,16 @@ html {
     overflow-x: hidden;
 }
 
-.sectionToDoList {
+.containerToDoList {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    justify-content: flex-start;
+    width: 100vw;
+ 
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 2rem;  
+     
 }
 
 .container {
@@ -18,58 +21,21 @@ html {
     justify-content: flex-start;
     align-items: center;
 
-    width: 48.625rem;
-    min-width: 48.625rem;
-    min-height: 33.4375rem;
-
+    width: 100%;
+    min-height: 48rem;
+    
     background: var(--gray-400);
     border-radius: 5px;
     box-shadow:  2px 2px 15px 4px var(--gray-shadow);
-    margin-bottom: 2rem;
     margin-top: 1rem;
-}
+    margin-bottom: 2rem;
 
-.header {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    width: 100%;
-    padding: 1.5rem;
-}
-
-.tasksMetrics {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-}
-
-.tasksMetricsLegend {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-}
-
-.tasksMetricsNumber {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--gray-500);
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    color: var(--gray-200);
+    transition: all 0.2s ease-in-out;
 }
 
 .containerTask {
     margin-top: 4rem;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -88,6 +54,7 @@ html {
     width: 100%;
 
 }
+
 
 .containerInitialMensagem {
     position: absolute;
@@ -127,41 +94,32 @@ html {
     }
 
     .container {
-        width: 92%;
+        width: 100%;
         min-width: 12.5rem;
         border-radius: 5px;
         margin-bottom: 1rem;
     }
     
-    .header {
+    .containerTask {
+        margin-top: 2rem;
         width: 100%;
-        padding: 1.5rem;
-    }
-    
-    .tasksMetricsLegend {
-        font-size: 1rem;
-    }
-    
-    .tasksMetricsNumber {
-        width: 1.5rem;
-        height: 1.5rem;
-        font-size: 1rem;
-    }
-    
-    .tasksMetrics {
-        gap: 0.5rem;
-    }
-    
-    .sectionTask {
-        gap: 1rem;
-        width: 100%;
-    
+        padding: 1rem;
     }
     
     .sectionTaskLegend {
         font-size: 1rem;
         width: 90%;
         text-align: center;
+    }
+
+    .containerToDoList {
+        padding: 0 1.5rem;
+        margin: 0;
+        align-items: center;
+    }
+
+    .sectionTask{
+        margin-top: 2rem;
     }
     
 }

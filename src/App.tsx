@@ -1,12 +1,11 @@
-import './styles/Global.css'
-import styles from './styles/App.module.css'
-import { ContainerTask } from './pages/ContainerTask/ContainerTask'
+import './Global.css'
+import { BrowserRouter } from 'react-router-dom'
+import { RoutesApp } from './routes'
+
 export function App() {
   return (
-    <>
-      <div className={styles.wrapper}>
-        <ContainerTask />
-      </div>
-    </>
+    <BrowserRouter>
+      <RoutesApp />
+    </BrowserRouter>
   )
 }
