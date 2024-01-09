@@ -8,7 +8,6 @@ export function Skeleton() {
           <div className={styles.logoutContent}>
             <div></div>
             <div className={styles.title}></div>
-            <div title="sair" className={styles.buttonLogout} />
           </div>
           <form>
             <div className={styles.inputTask} />
