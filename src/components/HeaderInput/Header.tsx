@@ -54,6 +54,7 @@ export function Header({
             placeholder="Adicione uma nova tarefa"
             id="inputTask"
             autoComplete="off"
+            required
           />
           {Object.keys(edit).length > 0 ? (
             <button title="Editar Tarefa" className={styles.buttonAddTask}>

@@ -80,10 +80,10 @@ export function Admin() {
   async function handleCreatNewTask(event: FormEvent) {
     event.preventDefault()
 
-    if (newTasks.trim() === '') {
-      alert('Digite sua tarefa')
-      return
-    }
+    // if (newTasks.trim() === '') {
+    //   alert('Digite sua tarefa')
+    //   return
+    // }
 
     if ((edit as Todo)?.id) {
       handleUpdateTask()

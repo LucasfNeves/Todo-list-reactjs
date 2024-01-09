@@ -1,7 +1,10 @@
 .containerHeader {
     width: 100vw;
     background: var(--gray-700);
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .headerContent {
@@ -119,7 +122,6 @@ form {
 
     .containerHeader {
         width: 100vw;
-        height: 12.5rem;
     }
 
     .title {
