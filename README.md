@@ -20,6 +20,7 @@ Você pode acessar o projeto por meio do link a seguir:
 - **HTML** : Linguagem padrão para estruturar o conteúdo das páginas web.
 - **Local Storage** : Inicialmente utilizado para armazenar dados localmente no dispositivo do usuário.
 - **Firebase**: Implementado a partir de 01/09/2024 para armazenamento seguro na nuvem, aprimorando confiabilidade e acessibilidade dos dados dos usuários.
+- **React Router Dom** : Para implementar o sistemas de rotas da aplicação.
 
 ## Funcionalidades
 
