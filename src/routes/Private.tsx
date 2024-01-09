@@ -20,6 +20,7 @@ export function Private({ children }: PrivateProps) {
           const userData = {
             uid: user.uid,
             email: user.email,
+            name: user.displayName,
           }
 
           localStorage.setItem('@detailUser', JSON.stringify(userData))

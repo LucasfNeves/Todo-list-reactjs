@@ -78,7 +78,7 @@ export function Login() {
         </button>
       </form>
       <span className={styles.link}>
-        Não possui uma conta ?<Link to={'/register'}>Cadastre-se !</Link>
+        Não possui uma conta?<Link to={'/register'}>Cadastre-se!</Link>
       </span>
     </div>
   )

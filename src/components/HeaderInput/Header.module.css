@@ -18,18 +18,20 @@
     flex-direction: column;
 }
 
-.logoutContent {
-    display: flex;
+.logoutDiv {
     width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 
 .buttonLogout {
-    background: var(--danger);
-    color: var(--gray-100);
+    border: 2px solid var(--danger);
+    background: none;
+    color: var(--danger);
     font-weight: 700;
     font-size: 0.0.875rem;
     cursor: pointer;
@@ -42,11 +44,13 @@
     gap: 0.5rem;
     border-radius: 8px ;
 
-    transition: opacity 0.1s;
+   
 }
 
 .buttonLogout:hover {
-    opacity: 0.8;
+    transition: background 0.2s, color 0.2s;
+    background: var(--danger);
+    color: var(--white);
     cursor: pointer;
 }
 

@@ -12,6 +12,7 @@ interface HeaderProps {
   submit: FormEventHandler<HTMLFormElement>
   onInvalid: FormEventHandler<HTMLInputElement>
   edit: object | Todo
+  tasks: Todo[]
 }
 
 export function Header({
@@ -28,12 +29,7 @@ export function Header({
   return (
     <header className={styles.containerHeader}>
       <div className={styles.headerContent}>
-        <div className={styles.logoutContent}>
-          <div></div>
-          <h1 className={styles.title}>
-            <img src={LogoMain} alt="" />
-            Tarefas
-          </h1>
+        <div className={styles.logoutDiv}>
           <button
             title="sair"
             onClick={handleLogout}
@@ -43,6 +39,10 @@ export function Header({
             <SignOut size={20} weight="fill" />
           </button>
         </div>
+        <h1 className={styles.title}>
+          <img src={LogoMain} alt="" />
+          Tarefas
+        </h1>
 
         <form onSubmit={submit}>
           <input

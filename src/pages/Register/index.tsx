@@ -80,7 +80,7 @@ export function Register() {
         </button>
       </form>
       <span className={styles.link}>
-        Já possui uma conta ?<Link to={'/'}>Faça o login !</Link>
+        Já possui uma conta?<Link to={'/'}>Faça o login!</Link>
       </span>
     </div>
   )

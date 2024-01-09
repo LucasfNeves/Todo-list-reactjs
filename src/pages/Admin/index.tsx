@@ -161,6 +161,7 @@ export function Admin() {
         value={newTasks}
         onInvalid={handleNewInvalidTask}
         edit={edit}
+        tasks={tasks}
       />
       <div className={styles.containerToDoList}>
         <main className={styles.container}>
