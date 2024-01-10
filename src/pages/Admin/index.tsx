@@ -23,7 +23,6 @@ import {
   doc,
 } from 'firebase/firestore'
 import { toast } from 'react-toastify'
-import { set } from 'firebase/database'
 
 export type Todo = {
   content: string
