@@ -7,11 +7,14 @@ import { auth } from '../../firebaseConection'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { Eye, EyeClosed } from 'phosphor-react'
+import { FirebaseError } from 'firebase/app'
+import { toast } from 'react-toastify'
 
 export function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   function handleShowPassword() {
     setShowPassword(!showPassword)
@@ -21,25 +24,33 @@ export function Register() {
 
   async function handleRegister(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
 
     if (email !== '' && password !== '') {
       try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password,
-        )
+        await createUserWithEmailAndPassword(auth, email, password)
 
-        const user = userCredential.user
+        navigate('/admin', { replace: true })
+        toast.success('Cadastro realizado com sucesso! Bem vindo(a)!')
 
-        navigate('/', { replace: true })
-
-        console.log(`Olá ${user?.email} !`)
+        setLoading(false)
       } catch (error) {
-        alert(`Erro ao realizar cadastro ! ${error}`)
+        const errorCode = (error as FirebaseError).code
+        if (errorCode === 'auth/weak-password') {
+          toast.error('A senha deve ter pelo menos 6 caracteres.')
+        } else if (errorCode === 'auth/email-already-in-use') {
+          toast.error('Este e-mail já está em uso.')
+        } else {
+          toast.error('Ops! Algo deu errado.')
+        }
+
+        setLoading(false)
+
+        console.log(error)
       }
     } else {
-      alert('Preencha todos os campos !')
+      toast.error('Preencha todos os campos')
+      setLoading(false)
     }
   }
 
@@ -76,7 +87,7 @@ export function Register() {
           </button>
         </label>
         <button className={styles.buttonLogin} type="submit">
-          Cadastrar
+          {loading ? 'Carregando...' : 'Cadastrar'}
         </button>
       </form>
       <span className={styles.link}>

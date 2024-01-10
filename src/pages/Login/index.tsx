@@ -8,11 +8,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../../firebaseConection'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { Eye, EyeClosed } from 'phosphor-react'
+import { toast } from 'react-toastify'
+import { FirebaseError } from 'firebase/app'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   function handleShowPassword() {
     setShowPassword(!showPassword)
@@ -22,20 +25,33 @@ export function Login() {
 
   async function handleLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    setLoading(true)
 
     if (email !== '' && password !== '') {
       try {
         await signInWithEmailAndPassword(auth, email, password)
 
         navigate('/admin', { replace: true })
-
+        setLoading(false)
+        toast.success('Login realizado com sucesso!')
         setEmail('')
         setPassword('')
       } catch (error) {
-        alert('Erro ao realizar login !')
+        const errorCode = (error as FirebaseError).code
+        console.log(errorCode)
+        if (errorCode === 'auth/invalid-credential') {
+          toast.error('Ops! Usuário ou senha incorretos.')
+        } else if (errorCode === 'auth/invalid-email') {
+          toast.error('Usuário não cadastrado.')
+        } else {
+          toast.error('Ops! Algo deu errado.')
+        }
+
+        setLoading(false)
       }
     } else {
-      alert('Preencha todos os campos !')
+      toast.error('Preencha todos os campos')
+      setLoading(false)
     }
   }
 
@@ -74,7 +90,7 @@ export function Login() {
           </button>
         </label>
         <button className={styles.buttonLogin} type="submit">
-          Acessar
+          {loading ? 'Carregando...' : 'Entrar'}
         </button>
       </form>
       <span className={styles.link}>

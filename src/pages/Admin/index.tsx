@@ -22,6 +22,8 @@ import {
   updateDoc,
   doc,
 } from 'firebase/firestore'
+import { toast } from 'react-toastify'
+import { set } from 'firebase/database'
 
 export type Todo = {
   content: string
@@ -35,6 +37,7 @@ export function Admin() {
   const [newTasks, setNewTasks] = useState('')
   const [user, setUser] = useState<{ uid: string } | null>(null)
   const [edit, setEdit] = useState<Todo[] | object>({})
+  const [loading, setLoading] = useState(false)
 
   const initialMessageAppears = tasks.length === 0
 
@@ -78,6 +81,7 @@ export function Admin() {
 
   // Adiciona um novo comentário e matém os comentários existentes
   async function handleCreatNewTask(event: FormEvent) {
+    setLoading(true)
     event.preventDefault()
 
     // if (newTasks.trim() === '') {
@@ -97,11 +101,13 @@ export function Admin() {
         uid: user?.uid,
         createdAt: new Date(),
       })
-
-      console.log('Tarefa salva com sucesso')
+      setLoading(false)
+      toast.success('Tarefa criada com sucesso!')
       setNewTasks('')
     } catch (error) {
-      console.log(`Erro ao salvar a tarefa: ${error}`)
+      setLoading(false)
+      toast.error('Ops! Algo deu errado.')
+      console.log(error)
     }
   }
 
@@ -111,17 +117,21 @@ export function Admin() {
   }
 
   async function handleUpdateTask() {
+    setLoading(true)
     const docRef = doc(db, 'tasks', (edit as Todo).id)
 
     await updateDoc(docRef, {
       content: newTasks,
     })
       .then(() => {
-        console.log('Documento atualizado com sucesso!')
+        toast.success('Tarefa atualizada com sucesso!')
+        setLoading(false)
         setNewTasks('')
         setEdit({})
       })
       .catch((error) => {
+        toast.error('Ops! Algo deu errado.')
+        setLoading(false)
         console.log(`Erro ao atualizar o documento: ${error}`)
         setNewTasks('')
         setEdit({})
@@ -162,6 +172,7 @@ export function Admin() {
         onInvalid={handleNewInvalidTask}
         edit={edit}
         tasks={tasks}
+        loading={loading}
       />
       <div className={styles.containerToDoList}>
         <main className={styles.container}>

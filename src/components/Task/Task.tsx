@@ -4,6 +4,7 @@ import { PencilSimpleLine, Trash } from 'phosphor-react'
 import { Todo } from '../../pages/Admin'
 import { db } from '../../firebaseConection'
 import { doc, deleteDoc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 interface TaskPorps {
   task: Todo
@@ -26,13 +27,16 @@ export function Task({
   }
 
   async function handleDeleteTask(id: string) {
+    const toastId = toast.loading('Deletando documento')
     const docRef = doc(db, 'tasks', id)
 
     try {
       await deleteDoc(docRef)
       console.log('Documento deletado com sucesso!')
       if (isChecked) onToggleCompleted(task.id, !isChecked)
+      toast.dismiss(toastId)
     } catch (error) {
+      toast.error('Não foi possível deletar o documento')
       console.log(error)
     }
   }

@@ -13,6 +13,7 @@ interface HeaderProps {
   onInvalid: FormEventHandler<HTMLInputElement>
   edit: object | Todo
   tasks: Todo[]
+  loading: boolean
 }
 
 export function Header({
@@ -21,10 +22,13 @@ export function Header({
   submit,
   onInvalid,
   edit,
+  loading,
 }: HeaderProps) {
   async function handleLogout() {
     await signOut(auth)
   }
+
+  const load = loading
 
   return (
     <header className={styles.containerHeader}>
@@ -58,13 +62,25 @@ export function Header({
           />
           {Object.keys(edit).length > 0 ? (
             <button title="Editar Tarefa" className={styles.buttonAddTask}>
-              <span className={styles.textButton}>Editar</span>
-              <CheckCircle size={20} weight="bold" />
+              {load ? (
+                <span className={styles.spinner}></span>
+              ) : (
+                <>
+                  <span className={styles.textButton}>Editar</span>
+                  <CheckCircle size={20} weight="bold" />
+                </>
+              )}
             </button>
           ) : (
             <button title="Adicionar Tarefa" className={styles.buttonAddTask}>
-              <span className={styles.textButton}>Adicionar</span>
-              <PlusCircle size={20} weight="bold" />
+              {load ? (
+                <span className={styles.spinner}></span>
+              ) : (
+                <>
+                  <span className={styles.textButton}>Adicionar</span>
+                  <PlusCircle size={20} weight="bold" />
+                </>
+              )}
             </button>
           )}
         </form>
